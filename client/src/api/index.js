@@ -1,7 +1,7 @@
 import axios from 'axios';
 
- const API = axios.create({ baseURL: 'http://localhost:5000' });
- // const API = axios.create({ baseURL: 'https://haopengjiang-mern-project-backend.zeet.app' });
+ // const API = axios.create({ baseURL: 'http://localhost:5000' });
+  const API = axios.create({ baseURL: 'https://mern-project-memory-backend.herokuapp.com' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
