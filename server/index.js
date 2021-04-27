@@ -1,5 +1,7 @@
 
 import express from 'express';
+import dotenv from "dotenv";
+dotenv.config();
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -18,11 +20,9 @@ app.use('/posts', postRoutes);
 app.use("/user", userRouter);
 app.use("/document", fileUploadRoutes)
 
-
-const CONNECTION_URL = 'mongodb://dbUser:1q2w3e4r5t@haopengjiang-mongo-production/memories';
 const PORT = process.env.PORT|| 5000;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 
