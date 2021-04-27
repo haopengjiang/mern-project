@@ -22,7 +22,7 @@ app.use("/document", fileUploadRoutes)
 
 const PORT = process.env.PORT|| 5000;
 
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME, user: process.env.DB_USER,pass: process.env.DB_PASS, useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 
