@@ -17,7 +17,7 @@ export const signin = async (req, res) => {
 
     if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "24h" });
 
     res.status(200).json({ result: oldUser, token });
   } catch (err) {
@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
 
     const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
 
-    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "24h" } );
 
     res.status(201).json({ result, token });
   } catch (error) {
@@ -45,4 +45,22 @@ export const signup = async (req, res) => {
     
     console.log(error);
   }
+};
+
+export const updateUser = (req, res, next) => {
+  UserModal.findByIdAndUpdate(
+    req.params.id,
+    { $set: 
+      { name: req.body.name,
+        email: req.body.email
+    }},
+    { new: true },
+    (err, updateUser) => {     
+      if (err) {
+        return next(err);
+      }
+      const token = req.headers.authorization.split(" ")[1];
+      res.status(200).json({result:updateUser,token});   
+    }
+  );
 };

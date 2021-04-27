@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
@@ -11,41 +10,26 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     padding: '10px 50px',
   },
-  heading: {
-    color: 'rgba(0,183,255, 1)',
-    textDecoration: 'none',
-  },
-  menuItem: {
-    color:'#f50057',
-  },
-  image: {
-    marginLeft: '15px',
-  },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '400px',
   },
-  profile: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '400px',
-  },
-  userName: {
+  copyRight: {
     display: 'flex',
     alignItems: 'center',
+    width: '400px',
   },
   brandContainer: {
     display: 'flex',
     alignItems: 'center',
   },
-  purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
-  },
-  navigation: {
-    '& > *': {
-      margin: theme.spacing(1),
+  root: {
+    '& > .fa': {
+      margin: theme.spacing(2),
     },
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
+
 }));

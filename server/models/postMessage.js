@@ -1,5 +1,16 @@
 import mongoose from 'mongoose';
 
+
+const reviewSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    comment: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
@@ -12,6 +23,7 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date(),
     },
+    reviews: [reviewSchema],
 })
 
 var PostMessage = mongoose.model('PostMessage', postSchema);

@@ -85,6 +85,22 @@ export const likePost = async (req, res) => {
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.status(200).json(updatedPost);
 }
-
+export const reviewPost = async (req, res) => {
+  const post = await PostMessage.findById(req.params.id);
+  if (post) {
+    const review = {
+      name: req.body.name,
+      comment: req.body.comment,
+    };
+    post.reviews.push(review);
+    const updatedPost = await post.save();
+    res.status(201).send({
+      data: updatedPost.reviews[updatedPost.reviews.length - 1],
+      message: 'Review saved successfully.',
+    });
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+};
 
 export default router;
