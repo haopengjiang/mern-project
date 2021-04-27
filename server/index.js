@@ -19,7 +19,7 @@ app.use("/user", userRouter);
 app.use("/document", fileUploadRoutes)
 
 
-const CONNECTION_URL = 'mongodb+srv://dbUser:1q2w3e4r5t@posts.9vaml.mongodb.net/test';
+const CONNECTION_URL = 'mongodb://dbUser:1q2w3e4r5t@haopengjiang-mongo-production/memories';
 const PORT = process.env.PORT|| 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
